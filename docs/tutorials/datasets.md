@@ -29,7 +29,8 @@ DatasetCatalog.register("my_dataset", get_dicts)
 Here, the snippet associates a dataset "my_dataset" with a function that returns the data.
 If you do not modify downstream code (i.e., you use the standard data loader and data mapper),
 then the function has to return a list of dicts in detectron2's standard dataset format, described
-next.
+next. You can also use arbitrary custom data format, as long as the
+downstream code (mainly the [custom data loader](data_loading.html)) supports it.
 
 For standard tasks
 (instance detection, instance/semantic/panoptic segmentation, keypoint detection),
@@ -47,7 +48,7 @@ will load the image from "file_name" and load "sem_seg" from "sem_seg_file_name"
 + `sem_seg`: semantic segmentation ground truth in a 2D `torch.Tensor`. Values in the array represent
    category labels.
 + `height`, `width`: integer. The shape of image.
-+ `image_id` (str): a string to identify this image. Mainly used by certain datasets
++ `image_id` (str): a string to identify this image. Used
 	during evaluation to identify the image, but a dataset may use it for different purposes.
 + `annotations` (list[dict]): the per-instance annotations of every
   instance in this image. Each annotation dict may contain:
